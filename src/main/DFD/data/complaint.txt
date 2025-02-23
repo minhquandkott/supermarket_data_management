@@ -1,0 +1,101 @@
+complaint_id,customer_id,po_id,issue_desc,res_desc,res_status,res_date,complain_handler
+1,62,11,In ut adipisci nesciunt incidunt rem aliquam quia atque blanditiis.,,0,2025-02-09,78
+2,79,18,Animi eum mollitia eaque maiores officiis vitae qui quia ad magni.,Id ut quos autem laboriosam officia debitis reiciendis sed beatae.,2,,
+3,28,23,Porro rerum omnis maxime mollitia impedit exercitationem inventore ea.,Ipsum illo recusandae vitae nihil.,2,,
+4,98,52,Reiciendis possimus omnis perferendis placeat tempora voluptatem cum quisquam.,,2,2025-01-11,83
+5,84,11,Error cupiditate laudantium repellat aliquam dolorum similique doloremque velit hic.,,1,2025-01-04,
+6,86,93,Vel neque ut quas quae laborum.,Sunt ab hic nulla non officiis amet accusamus ea corrupti.,0,2025-01-23,17
+7,5,58,Omnis incidunt similique ut optio unde aspernatur.,,0,2025-02-07,
+8,71,96,Voluptas nostrum dolorem dolorum quis ad corporis quibusdam quo ullam est.,Quis sint iure dolor.,0,2025-01-01,17
+9,83,36,Aspernatur dolores sint vero distinctio veritatis unde eos excepturi non.,,0,2025-01-25,22
+10,59,54,Totam velit eligendi possimus porro sint sapiente.,Aspernatur minus eum corrupti ullam perspiciatis harum laborum.,2,2025-02-15,91
+11,14,32,Exercitationem neque enim nobis voluptate veniam est omnis.,,1,2025-01-05,85
+12,88,14,Accusamus nisi provident laborum itaque quam necessitatibus totam ad doloremque doloribus laboriosam.,Et voluptates itaque amet vel tenetur quam voluptates aspernatur veniam.,1,,61
+13,50,61,Cum impedit fugit inventore necessitatibus ducimus.,,2,,
+14,51,51,Nesciunt labore libero cupiditate facilis vero rerum quia.,,1,2025-01-08,12
+15,25,41,Beatae ab consequuntur non amet eum ab.,,2,2025-01-08,
+16,42,51,Facere maxime veritatis accusamus sit debitis sint maxime nihil sit optio assumenda.,,0,2025-01-18,8
+17,99,78,Repellat dignissimos omnis officiis non mollitia error eaque praesentium fugit dignissimos reiciendis eos.,Dicta odit numquam cumque eum.,0,2025-01-09,24
+18,30,70,Possimus totam dolores iusto quasi natus dignissimos corporis.,,0,2025-01-05,74
+19,31,47,Expedita nostrum laboriosam culpa expedita et laboriosam.,,0,2025-01-06,5
+20,19,25,Enim id fuga repellendus natus explicabo sint error.,,1,2025-01-14,34
+21,34,52,Quos exercitationem tempora amet harum quas minus.,Dolorum quo officia ducimus consequuntur quas harum.,0,2025-02-03,
+22,13,29,Dicta sunt facere molestiae quisquam officia ad.,Rerum vero voluptas alias expedita nostrum expedita provident.,2,,12
+23,92,8,Veritatis porro ducimus perferendis aliquam mollitia eum similique fuga dolor.,Iste minus voluptates numquam assumenda ratione iste doloribus neque.,2,2025-01-30,
+24,59,40,Reiciendis officia distinctio impedit illum dolore dolorum fugiat.,,2,2025-01-18,64
+25,96,64,Voluptates quidem eligendi molestiae deserunt deserunt autem ducimus iste minima maxime facere voluptatem.,Quasi laudantium corporis vitae sit cupiditate odio laboriosam alias vero.,1,,
+26,22,47,Laudantium veniam beatae aut magnam laborum aut.,,1,2025-02-11,65
+27,35,43,A similique nulla nulla temporibus a quis facere placeat quia.,Aliquid pariatur pariatur eligendi atque totam quam.,1,,85
+28,24,4,Est saepe cupiditate quod qui similique officiis quae nesciunt placeat ad ut laudantium.,Facilis reiciendis cupiditate quam alias similique.,1,,69
+29,29,75,Quae aliquid ab temporibus provident rem voluptatem rerum cum esse officiis numquam exercitationem.,Reprehenderit doloribus magnam neque eaque repellat doloremque.,2,,
+30,96,35,Eius quibusdam provident nemo optio dolorem itaque recusandae qui iusto corporis ipsum quibusdam.,,2,2025-02-08,9
+31,86,85,Vel illum in suscipit fugiat quidem nemo quas eum.,Non illo minus ea molestiae architecto ducimus minus.,2,2025-01-23,78
+32,75,49,Dicta non impedit reprehenderit nesciunt expedita ducimus odit commodi.,,0,,97
+33,54,33,Iusto accusamus fugit quod sunt eos fugiat deserunt reiciendis voluptate consectetur soluta animi.,,2,,79
+34,66,53,Amet molestias accusantium ullam molestiae pariatur expedita molestias perspiciatis.,,1,2025-01-24,22
+35,99,57,Minima facilis architecto molestias veritatis veritatis quod.,Facere architecto delectus pariatur assumenda suscipit.,2,2025-02-04,78
+36,57,9,Rerum aperiam unde repudiandae temporibus harum cumque non labore praesentium nihil.,,2,2025-02-13,
+37,15,60,Asperiores accusamus esse doloribus repellat voluptatibus dicta vitae.,Mollitia possimus in facilis asperiores.,2,2025-01-19,15
+38,53,4,Aspernatur quas excepturi quis mollitia eius provident deleniti repellat repellat.,,2,2025-02-11,82
+39,29,26,Modi culpa eveniet accusamus ipsum molestias blanditiis hic est eligendi eius nisi.,Earum facilis optio dicta hic eligendi molestiae illum culpa nihil.,2,,82
+40,11,57,Quibusdam corrupti iste quo eligendi totam aliquid facilis.,Dolorem enim iure corporis natus maxime similique veniam.,2,,86
+41,83,68,Impedit natus neque maxime numquam saepe dolore alias.,Dolore architecto rem esse odio modi accusantium quae.,0,2025-01-22,18
+42,54,80,Ex soluta quasi laboriosam amet odio corporis.,,2,,
+43,87,49,Laborum iusto molestias deserunt dicta architecto nemo adipisci quos error.,Praesentium explicabo mollitia vel corrupti impedit.,1,2025-02-14,33
+44,71,18,Animi ab itaque pariatur totam ducimus nemo.,Molestiae ullam ad maiores tempore natus molestiae suscipit quas ea.,0,2025-01-27,4
+45,69,70,Assumenda labore incidunt consequuntur deleniti totam corrupti vitae aliquid illo sequi.,,0,2025-01-01,14
+46,77,62,Possimus eius ullam totam voluptatibus excepturi rerum nihil error.,Eaque cupiditate quasi sed minus.,2,,
+47,5,5,Ex similique asperiores nostrum fugiat aliquid rem temporibus reprehenderit quas quae dolor.,,1,2025-01-14,
+48,83,41,Vitae nisi mollitia ex numquam doloribus totam odit totam.,,2,2025-01-12,47
+49,13,2,Magnam ullam veniam distinctio voluptatibus expedita dolore reiciendis distinctio est autem perspiciatis adipisci.,Animi nulla facere qui delectus quis.,2,,43
+50,100,8,Voluptas tempore eaque eveniet alias vero.,Rerum repellendus veniam laborum vel unde quibusdam placeat.,2,,3
+51,78,51,Distinctio totam voluptatem atque veritatis ea voluptates libero commodi veritatis.,In assumenda illo nesciunt voluptatibus fugit asperiores iste distinctio.,0,2025-02-16,
+52,52,24,Earum illum quisquam accusantium vitae culpa dicta corrupti consequuntur ab dignissimos.,,2,2025-01-11,
+53,45,21,Qui quos incidunt molestias deleniti itaque quia aliquid iste at officia praesentium.,Eveniet nostrum consectetur neque pariatur veritatis repellendus minus id.,0,2025-01-20,90
+54,46,62,Ex distinctio ipsum vero ab ut maxime possimus totam cupiditate nam.,Quam tempora nihil aliquam numquam.,2,2025-01-02,
+55,63,52,Similique eaque dolor dicta quidem consectetur eos quia dicta.,Exercitationem molestiae at incidunt et nisi reiciendis cumque voluptas.,0,,19
+56,70,82,Voluptate temporibus facilis itaque laborum odit dignissimos temporibus aspernatur ratione quasi quasi.,Minus nesciunt excepturi non fugiat eveniet.,1,2025-01-24,90
+57,36,44,Possimus soluta architecto odio in excepturi iusto corporis impedit molestias.,,1,2025-01-13,
+58,34,85,Occaecati qui aliquam temporibus beatae tempora assumenda.,,2,,75
+59,92,78,Dolores rerum veniam voluptatum rerum exercitationem aut eum rem quas ipsam.,,0,2025-01-29,30
+60,7,63,Veritatis culpa consequatur sapiente laborum neque provident.,Aut beatae maiores praesentium ab commodi commodi.,2,2025-01-31,55
+61,93,39,Ipsa exercitationem ea velit quaerat neque temporibus.,,1,,23
+62,61,41,Quos fugiat totam quia distinctio velit harum iure officia consequuntur provident odio.,Necessitatibus ex libero expedita soluta accusamus.,2,2025-01-22,49
+63,10,59,Tempore consequatur ea odio adipisci impedit cumque eveniet optio ipsam blanditiis.,Distinctio molestiae inventore tempore nostrum repellat officia iure minima.,2,2025-01-24,82
+64,9,93,Eaque aut amet eius explicabo molestias nulla quis.,,1,2025-02-06,69
+65,76,49,Id sequi atque debitis dolorem inventore quas voluptatum deleniti enim veniam quo.,,1,,37
+66,21,7,Vitae non laborum laborum ab in tenetur alias nulla.,Consectetur facilis commodi quos consequatur a libero mollitia dolore quod autem.,2,2025-01-08,57
+67,33,33,Tenetur enim mollitia a officia porro laudantium maxime ex cupiditate ducimus deserunt.,Dignissimos optio animi delectus perferendis.,1,2025-02-09,
+68,51,70,Culpa laborum quisquam sunt cupiditate ratione aliquam accusantium maiores mollitia velit dolores.,,2,2025-01-11,66
+69,75,28,Sequi unde qui nesciunt officia reprehenderit earum debitis quisquam iusto exercitationem.,Excepturi sint unde voluptate asperiores animi quod tempore.,1,2025-01-02,73
+70,79,42,Quaerat dolorum ullam minus corporis dignissimos expedita atque non voluptatum sequi.,,2,2025-01-08,32
+71,97,41,Omnis placeat sunt debitis voluptas id inventore velit quidem illo impedit.,Dolorem aspernatur natus sapiente alias eligendi modi cupiditate.,1,2025-01-07,
+72,78,46,Reiciendis molestias qui nesciunt perferendis magni fugit ut.,Exercitationem provident dicta veniam hic error aut.,2,2025-02-02,
+73,64,94,Harum corrupti eum ex at quas sequi odit distinctio.,,1,2025-01-03,
+74,46,83,Dolore nemo eum voluptate minus vero nisi.,,0,2025-02-11,
+75,7,94,Necessitatibus voluptate molestias consequuntur reprehenderit recusandae incidunt quidem aliquam ipsam illum.,Ipsum hic velit odit officia debitis corporis animi.,2,2025-01-06,
+76,71,26,Architecto eligendi non deleniti fugit sapiente beatae maiores sed fugiat qui hic.,,2,,12
+77,47,49,Itaque laboriosam veniam quasi animi enim soluta asperiores.,,1,,73
+78,39,66,Tempore labore laboriosam sint modi dolore ab accusantium ea.,At repellendus reprehenderit unde fuga porro.,1,2025-01-21,
+79,17,46,Nam odio soluta commodi voluptatum illo non.,,0,,89
+80,86,39,Ratione fuga pariatur dolores quam soluta optio velit natus animi sequi temporibus debitis.,Animi laborum repudiandae excepturi et veniam quod culpa recusandae pariatur.,0,2025-01-31,99
+81,28,29,Labore adipisci at est eum minus.,,2,2025-01-16,
+82,8,44,Magnam modi cum rem est iste earum hic laborum exercitationem nihil iure.,Unde tempore facere tenetur nulla.,0,,
+83,45,57,Vitae ut amet exercitationem repellat dignissimos excepturi vero modi a sint et.,Necessitatibus natus a laborum adipisci.,2,2025-01-06,6
+84,3,77,Ducimus ab voluptate maxime non molestiae rem error doloremque minima ea.,,2,2025-02-02,
+85,36,78,Minima voluptatibus quidem dicta maxime voluptas quod atque.,Unde laborum deserunt officia impedit illo consequuntur.,0,2025-01-22,30
+86,97,89,Porro distinctio aliquam vitae sed perspiciatis accusamus commodi laudantium.,,1,,93
+87,65,46,Totam ipsam dolore nesciunt dignissimos quam.,Aliquam optio facere dignissimos quam sed.,1,2025-02-14,89
+88,13,58,Nobis a eius aliquid quidem placeat.,Architecto suscipit deserunt eaque esse iusto illum laborum.,0,2025-01-10,
+89,78,22,Dolore suscipit exercitationem assumenda amet animi repellat qui.,Magni aperiam doloremque veritatis pariatur.,2,,48
+90,48,69,Voluptates enim molestiae suscipit quasi iure unde itaque aut in exercitationem molestiae perspiciatis.,,0,2025-02-14,62
+91,83,52,Sunt neque deleniti rem repellat officia.,,2,2025-01-17,29
+92,55,33,Labore modi rem a eveniet id assumenda.,Nemo ab nihil possimus molestias.,0,2025-01-24,74
+93,53,1,Cupiditate ipsam aperiam nulla error tempora quisquam adipisci vel vero nulla.,,0,2025-02-05,
+94,64,76,Minima voluptatibus sunt sed neque sint dolore.,,1,2025-02-05,59
+95,3,34,Dignissimos alias nesciunt amet expedita praesentium odit modi molestias expedita quaerat a.,Laudantium accusantium sapiente corrupti doloribus nemo.,2,2025-02-03,10
+96,65,53,Consectetur rem veritatis pariatur et delectus sequi dicta quia non ea praesentium illo.,Libero sapiente excepturi sed quas magni.,1,,93
+97,58,83,Iure necessitatibus ad pariatur laudantium nam.,Harum ea vel placeat voluptatem velit.,1,2025-01-12,12
+98,81,49,Mollitia cumque quibusdam nam sequi modi excepturi.,,0,2025-01-15,96
+99,47,96,Ut labore earum esse rerum iure maxime.,,0,,55
+100,51,44,Asperiores earum placeat est ducimus officiis qui quo harum voluptates aliquam saepe.,Fugiat enim sit quam sint id vel deserunt veritatis minus.,2,,57
