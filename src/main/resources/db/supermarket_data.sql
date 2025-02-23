@@ -2000,3 +2000,27 @@ VALUES
 (18, 'FedEx', 'Warehouse 7, Trois-Rivières, QC', 'Supermarket 18, Moncton, NB', '2021-09-09', '2021-09-10', 1),
 (19, 'Purolator', 'Warehouse 7, Guelph, ON', 'Supermarket 19, Fredericton, NB', '2022-01-18', '2022-01-19', 1),
 (20, 'UPS', 'Warehouse 7, Lethbridge, AB', 'Supermarket 20, Saint John, NB', '2022-01-10', '2022-01-12', 2);
+
+INSERT INTO inventory_shipment (request_id, is_courier, from_address, to_address, is_est_date, is_act_date, is_status)
+VALUES
+(1, 'Canada Post', 'Warehouse 8, Toronto, ON', 'Outlet 16, Vancouver, BC', '2025-02-17', '2025-02-18', 1),
+(2, 'FedEx', 'Warehouse 13, Calgary, AB', 'Outlet 19, Montreal, QC', '2025-01-21', '2025-01-23', 0),
+(3, 'Purolator', 'Warehouse 13, Edmonton, AB', 'Outlet 19, Ottawa, ON', '2025-01-16', '2025-01-18', 1),
+(4, 'UPS', 'Warehouse 6, Winnipeg, MB', 'Outlet 12, Halifax, NS', '2025-01-11', '2025-01-13', 2),
+(5, 'Canada Post', 'Warehouse 11, Quebec City, QC', 'Outlet 12, Toronto, ON', '2025-01-13', '2025-01-15', 2),
+(6, 'FedEx', 'Warehouse 6, Regina, SK', 'Outlet 16, Victoria, BC', '2025-01-16', '2025-01-17', 1),
+(7, 'Purolator', 'Warehouse 6, Saskatoon, SK', 'Outlet 16, St. John, NL', '2025-01-24', '2025-01-25', 0),
+(8, 'UPS', 'Warehouse 8, Hamilton, ON', 'Outlet 4, London, ON', '2025-01-06', '2025-01-08', 1),
+(9, 'Canada Post', 'Warehouse 13, Mississauga, ON', 'Outlet 20, Windsor, ON', '2025-02-18', '2025-02-19', 0),
+(10, 'FedEx', 'Warehouse 11, Brampton, ON', 'Outlet 1, Kitchener, ON', '2025-01-17', '2025-01-18', 0),
+(11, 'Purolator', 'Warehouse 6, Markham, ON', 'Outlet 14, Vaughan, ON', '2025-01-09', '2025-01-10', 1),
+(12, 'UPS', 'Warehouse 18, Gatineau, QC', 'Outlet 17, Longueuil, QC', '2025-02-13', '2025-02-15', 1),
+(13, 'Canada Post', 'Warehouse 6, Burnaby, BC', 'Outlet 17, Richmond, BC', '2025-02-05', '2025-02-06', 1),
+(14, 'FedEx', 'Warehouse 8, Saskatoon, SK', 'Outlet 16, Sudbury, ON', '2025-01-14', '2025-01-15', 0),
+(15, 'Purolator', 'Warehouse 18, Windsor, ON', 'Outlet 4, Sherbrooke, QC', '2025-01-21', '2025-01-23', 0),
+(16, 'UPS', 'Warehouse 18, St. Catharines, ON', 'Outlet 19, Kingston, ON', '2025-01-15', '2025-01-16', 2),
+(17, 'Canada Post', 'Warehouse 18, Barrie, ON', 'Outlet 4, Kelowna, BC', '2025-02-04', '2025-02-05', 2),
+(18, 'FedEx', 'Warehouse 18, Trois-Rivières, QC', 'Outlet 1, Moncton, NB', '2025-01-16', '2025-01-18', 0),
+(19, 'Purolator', 'Warehouse 18, Guelph, ON', 'Outlet 5, Fredericton, NB', '2025-01-06', '2025-01-07', 0),
+(20, 'UPS', 'Warehouse 7, Lethbridge, AB', 'Outlet 14, Saint John, NB', '2025-01-14', '2025-01-16', 2);
+
