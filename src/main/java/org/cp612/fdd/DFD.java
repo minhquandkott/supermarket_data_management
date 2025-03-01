@@ -28,7 +28,7 @@ public class DFD {
         columnSize = columnNames.size();
         dataSize = dataset.size();
 
-        partitions = new ArrayList[columnSize];
+        partitions = new ArrayList[1 << columnSize];
         partitionChecked = new boolean[1 << columnSize];
         partitionsLength = new int[1 << columnSize];
 
@@ -56,8 +56,8 @@ public class DFD {
 
         // Initialize partitions
         for (int i = 0; i < (1 << columnSize); i++) {
-            for (int j = 0; j < columnSize; j++) {
-                partitions[j].add(new ArrayList<>());
+            for (int j = 0; j < (1 << columnSize); j++) {
+                partitions[j] = new ArrayList<>();
             }
             partitionsLength[i] = 0;
             partitionChecked[i] = false;
