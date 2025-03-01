@@ -1,0 +1,12 @@
+package org.cp612.fdd;
+
+public enum FDCategory {
+    NONE,
+    NOT_NONE,
+    DEPENDENCY,
+    MINIMAL_DEPENDENCY,
+    CANDIDATE_DEPENDENCY,
+    NON_DEPENDENCY,
+    MAXIMAL_NON_DEPENDENCY,
+    CANDIDATE_NON_DEPENDENCY;
+}

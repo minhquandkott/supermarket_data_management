@@ -1,116 +1,175 @@
 package org.cp612.fdd;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DFD {
+    protected final List<String> columnNames;
+    protected final int columnSize;
+    protected final int dataSize;
+    protected Set<Integer> uniqueColumns = new HashSet<>();
+    protected Set<Integer> columnIndexes = new HashSet<>();
+    //encoded data
+    protected int[][] data;
 
-    public static Set<FunctionalDependency> discoverFunctionalDependencies(List<Map<String, String>> dataset) {
+    //store all partition of all combinations
+    //[column-index][group-index] = a set of row-index
+    protected List<List<Integer>>[] partitions;
+    //whether this partition is calculated
+    protected boolean[] partitionChecked;
+    //the total size of rows of data in each partition
+    protected int[] partitionsLength;
 
-        Set<FunctionalDependency> fds = new HashSet<>();
+    //functional dependencies, fds[i] = a set of LHSs when RHS is column[i]
+    protected Set<Integer>[] fds;
 
-        //Get all columns in the dataset
-        Set<String> columns = dataset.getFirst().keySet();
-        Set<String> remainingColumns = new HashSet<>(columns);
+    protected DFD(DataSet dataset) {
+        columnNames = dataset.getColumnNames();
+        columnSize = columnNames.size();
+        dataSize = dataset.size();
 
-        //Check for unique columns
-        for (String column : columns) {
-            if (isUniqueColumn(dataset, column)) {
-                // If the column is unique, it functionally determines all other columns
-                remainingColumns.remove(column);
-                fds.add(new FunctionalDependency(Set.of(column), remainingColumns));
-            }
+        partitions = new ArrayList[columnSize];
+        partitionChecked = new boolean[1 << columnSize];
+        partitionsLength = new int[1 << columnSize];
+
+        fds = new Set[columnSize];
+        for (int i = 0; i < fds.length; i++) {
+            fds[i] = new HashSet<>();
         }
 
-        // Step 3: For each column as RHS, find minimal FDs
-        for (String rhs : remainingColumns) {
-            Set<String> lhsColumns = new HashSet<>(remainingColumns);
-            lhsColumns.remove(rhs);
-            findLHSs(dataset, lhsColumns, rhs, fds);
-        }
-
-        return fds;
+        encodeData(dataset);
     }
 
-    private static boolean isUniqueColumn(List<Map<String, String>> dataset, String column) {
-        Set<String> values = new HashSet<>();
-        for (Map<String, String> row : dataset) {
-            String value = row.get(column);
-            if (values.contains(value)) {
-                return false; // Duplicate value found
-            }
-            values.add(value);
+    /**
+     * encode original data
+     *
+     * @param dataset
+     */
+    private void encodeData(DataSet dataset) {
+        if (dataset.isEmpty()) {
+            System.out.println("Empty input dataset!");
+            return;
         }
-        return true; // No Duplicate value found
+
+        // Initialize data structures
+        boolean[] duplicate = new boolean[columnSize];
+
+        // Initialize partitions
+        for (int i = 0; i < (1 << columnSize); i++) {
+            for (int j = 0; j < columnSize; j++) {
+                partitions[j].add(new ArrayList<>());
+            }
+            partitionsLength[i] = 0;
+            partitionChecked[i] = false;
+        }
+
+        // Initialize dictionary for mapping values to integers
+        List<Map<String, Integer>> dict = new ArrayList<>();
+        for (int i = 0; i < columnSize; i++) {
+            duplicate[i] = true;
+            dict.add(new HashMap<>());
+        }
+
+        // Process each row in the dataset
+        data = new int[dataSize][columnSize];
+        for (int j = 0; j < dataset.size(); j++) {
+            List<String> row = dataset.get(j);
+            int[] tempInt = new int[columnSize];
+            for (int i = 0; i < columnSize; i++) {
+                String value = row.get(i);
+
+                // Map the value to an integer using the dictionary
+                if (dict.get(i).containsKey(value)) {
+                    int mappedValue = dict.get(i).get(value);
+                    duplicate[i] = false; // Mark as not unique
+                    tempInt[i] = mappedValue;
+                } else {
+                    int newValue = dict.get(i).size();
+                    tempInt[i] = newValue;
+                    dict.get(i).put(value, newValue);
+                }
+            }
+            data[j] = tempInt;
+        }
+
+        // Identify unique columns
+        for (int i = 0; i < columnSize; i++) {
+            if (duplicate[i]) {
+                uniqueColumns.add(1 << i);
+            }
+        }
     }
 
-    private static void findLHSs(List<Map<String, String>> dataset, Set<String> columns, String rhs,
-                                       Set<FunctionalDependency> fds) {
-        // Start with individual columns as seeds
-        for (String column : columns) {
-            Set<String> lhs = new HashSet<>();
-            lhs.add(column);
-            if (isFunctionalDependency(dataset, lhs, rhs)) {
-                fds.add(new FunctionalDependency(lhs, new HashSet<>(Collections.singletonList(rhs))));
+    /**
+     * run DFD
+     */
+    private void solve() {
+        for (int i = 0; i < columnSize; ++i) {
+            int columnIndex = 1 << i;
+            if (uniqueColumns.contains(columnIndex)) {
+                //for unique columns, they functionally determine the rest of columns
+                for (int j = 0; j < columnSize; ++j) {
+                    if (i == j) continue; //skip column[i]
+                    //columnIndex -> j
+                    fds[j].add(columnIndex);
+                }
+                continue;
             }
+            columnIndexes.add(columnIndex);
         }
-
-        // Explore larger combinations (depth-first traversal)
-        for (String column : columns) {
-            Set<String> remainingColumns = new HashSet<>(columns);
-            remainingColumns.remove(column);
-            findMinimalFDsRecursive(dataset, Set.of(column), remainingColumns, rhs, fds);
-        }
-    }
-
-    private static void findMinimalFDsRecursive(List<Map<String, String>> dataset, Set<String> currentLHS,
-                                                Set<String> remainingColumns, String rhs,
-                                                Set<FunctionalDependency> fds) {
-        for (String column : remainingColumns) {
-            Set<String> newLHS = new HashSet<>(currentLHS);
-            newLHS.add(column);
-
-            if (isFunctionalDependency(dataset, newLHS, rhs)) {
-                // Check if this FD is minimal
-                boolean isMinimal = true;
-                for (String col : currentLHS) {
-                    Set<String> subsetLHS = new HashSet<>(newLHS);
-                    subsetLHS.remove(col);
-                    if (isFunctionalDependency(dataset, subsetLHS, rhs)) {
-                        isMinimal = false;
-                        break;
+        if (!columnIndexes.isEmpty()) {
+            for (int i = 0; i < columnSize; ++i) {
+                int currentColumnIndex = 1 << i;
+                DFDColumn dfdColumn = new DFDColumn(this);
+                for (Integer columnIndex : columnIndexes) {
+                    if (columnIndex != currentColumnIndex) {
+                        dfdColumn.pushColumn(columnIndex);
                     }
                 }
-
-                if (isMinimal) {
-                    fds.add(new FunctionalDependency(newLHS, new HashSet<>(Collections.singletonList(rhs))));
+                Set<Integer> lhsSet = dfdColumn.findLHSs(currentColumnIndex);
+                if (!lhsSet.isEmpty()) {
+                    for (Integer lhs : lhsSet) {
+                        fds[i].add(lhs);
+                    }
                 }
-            } else {
-                // Continue exploring supersets
-                Set<String> newRemainingColumns = new HashSet<>(remainingColumns);
-                newRemainingColumns.remove(column);
-                findMinimalFDsRecursive(dataset, newLHS, newRemainingColumns, rhs, fds);
             }
         }
     }
 
-    private static boolean isFunctionalDependency(List<Map<String, String>> dataset, Set<String> lhs, String rhs) {
-        Map<String, String> valueMap = new HashMap<>();
-        for (Map<String, String> row : dataset) {
-            StringBuilder keyBuilder = new StringBuilder();
-            for (String col : lhs) {
-                keyBuilder.append(row.get(col)).append("|");
-            }
-            String key = keyBuilder.toString();
-
-            if (valueMap.containsKey(key)) {
-                if (!Objects.equals(valueMap.get(key), row.get(rhs))) {
-                    return false; // Conflict found, not a functional dependency
+    /**
+     * create output for DFD
+     *
+     * @return
+     */
+    private Set<FunctionalDependency> buildOutput() {
+        Set<FunctionalDependency> result = new HashSet<>();
+        for (int i = 0; i < fds.length; i++) {
+            Set<Integer> lhsSet = fds[i];
+            for (Integer lhs : lhsSet) {
+                List<String> fdLhs = new ArrayList<>();
+                for (int j = 0; j < columnNames.size(); j++) {
+                    int columnIndex = 1 << j;
+                    if ((lhs & columnIndex) != 0) {
+                        fdLhs.add(columnNames.get(j));
+                    }
                 }
-            } else {
-                valueMap.put(key, row.get(rhs));
+                List<String> fdRhs = new ArrayList<>();
+                fdRhs.add(columnNames.get(i));
+                result.add(new FunctionalDependency(fdLhs, fdRhs));
             }
         }
-        return true; // No conflicts, it's a functional dependency
+        return result;
     }
 
+    /**
+     * entrance of DFD
+     *
+     * @param dataset
+     * @return
+     */
+    public static Set<FunctionalDependency> discoverFunctionalDependencies(DataSet dataset) {
+        DFD dfd = new DFD(dataset);
+        dfd.solve();
+        return dfd.buildOutput();
+    }
 }

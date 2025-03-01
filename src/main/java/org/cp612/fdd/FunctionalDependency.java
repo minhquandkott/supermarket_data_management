@@ -1,13 +1,13 @@
 package org.cp612.fdd;
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class FunctionalDependency {
-    Set<String> lhs;
-    Set<String> rhs;
+    private final List<String> lhs;
+    private final List<String> rhs;
 
-    public FunctionalDependency(Set<String> lhs, Set<String> rhs) {
+    public FunctionalDependency(List<String> lhs, List<String> rhs) {
         this.lhs = lhs;
         this.rhs = rhs;
     }
