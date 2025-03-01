@@ -24,7 +24,7 @@ public class PostgreSQLExample {
 
 //        final String TEST_TABLE = "inventory_request_product_detail";
         final String TEST_TABLE = "inventory_request";
-        Map<String, List<Map<String, String>>> testData = PostgreSQLProcessor.queryTable(TEST_TABLE);
+        Map<String, DataSet> testData = PostgreSQLProcessor.queryTable(TEST_TABLE);
 //        Map<String, Set<FunctionalDependency>> result =
 //                DFDDependencyDiscovery.discoverFunctionalDependencies(testData);
 //
