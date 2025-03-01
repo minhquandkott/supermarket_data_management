@@ -11,22 +11,22 @@ public class DFDColumn {
     private final DFD dfd;
 
     //use bitmap to store all combinations
-    private boolean[] visited;
-    private boolean[] dependency;
-    private boolean[] nonDependency;
-    private boolean[] candidateDependency;
-    private boolean[] candidateNonDependency;
-    private boolean[] minimalDependency;
-    private boolean[] maximalNonDependency;
+    private final boolean[] visited;
+    private final boolean[] dependency;
+    private final boolean[] nonDependency;
+    private final boolean[] candidateDependency;
+    private final boolean[] candidateNonDependency;
+    private final boolean[] minimalDependency;
+    private final boolean[] maximalNonDependency;
 
-    //store the index of dependencies/non_dependencies
-    private Set<Integer> dependencies;
-    private Set<Integer> non_dependencies;
+    //store the index of dependencies/nonDependencies
+    private final Set<Integer> dependencies;
+    private final Set<Integer> nonDependencies;
 
-    private Set<Integer> columnIndexes = new HashSet<>();
+    private final Set<Integer> columnIndexes = new HashSet<>();
 
     //used for tracing node
-    private Stack<Integer> trace = new Stack<>();
+    private final Stack<Integer> trace = new Stack<>();
 
     public DFDColumn(DFD dfd) {
         this.dfd = dfd;
@@ -38,7 +38,7 @@ public class DFDColumn {
         minimalDependency = new boolean[1 << dfd.columnSize];
         maximalNonDependency = new boolean[1 << dfd.columnSize];
         dependencies = new HashSet<>();
-        non_dependencies = new HashSet<>();
+        nonDependencies = new HashSet<>();
     }
 
     public void pushColumn(int column) {
@@ -75,7 +75,7 @@ public class DFDColumn {
     public void addNonDependency(int nodeIndex) {
         candidateNonDependency[nodeIndex] = false;
         maximalNonDependency[nodeIndex] = true;
-        non_dependencies.add(nodeIndex);
+        nonDependencies.add(nodeIndex);
     }
 
     public void addDepCandidate(int nodeIndex) {
@@ -176,9 +176,11 @@ public class DFDColumn {
         return result;
     }
 
-    /** find out the potential nodes of minDep
-     * @param nodeIndex
-     * @return
+    /**
+     * find out the potential nodes of minDep
+     *
+     * @param nodeIndex the current node
+     * @return subsets after pruning
      */
     private List<Integer> prunedSubsets(int nodeIndex) {
         Set<Integer> subsetSet = uncheckedSubsets(nodeIndex);
@@ -220,16 +222,18 @@ public class DFDColumn {
         return result;
     }
 
-    /** find out the potential nodes of maxNonDep
-     * @param nodeIndex
-     * @return
+    /**
+     * find out the potential nodes of maxNonDep
+     *
+     * @param nodeIndex the current node
+     * @return supersets after pruning
      */
     private List<Integer> prunedSupersets(int nodeIndex) {
         Set<Integer> supersetSet = uncheckedSupersets(nodeIndex);
         List<Integer> supersets = new ArrayList<>(supersetSet);
 
         //to find out supersets of nodeIndex and subsets of non-dependencies
-        for (Integer maxNonDep : non_dependencies) {
+        for (Integer maxNonDep : nonDependencies) {
             for (int i = 0; i < supersets.size(); i++) {
                 Integer superset = supersets.get(i);
                 //superset is maxNonDep, it should be removed
@@ -268,8 +272,8 @@ public class DFDColumn {
     /**
      * whether this node had been categorized as dependency or non-dependency
      *
-     * @param nodeIndex
-     * @return
+     * @param nodeIndex the current node
+     * @return category of the current node
      */
     private FDCategory getCategory(int nodeIndex) {
         if (!dependency[nodeIndex] && !nonDependency[nodeIndex]) {
@@ -324,10 +328,10 @@ public class DFDColumn {
     /**
      * calculate the partition size of 'nodeIndex' + 'column'
      *
-     * @param nodeIndex
+     * @param nodeIndex    current node
      * @param oldNodeIndex subset of 'nodeIndex', for optimization
-     * @param column
-     * @return
+     * @param column       another column
+     * @return the partition size of 'nodeIndex' + 'column'
      */
     private int computePartitions(int nodeIndex, int oldNodeIndex, int column) {
         if (dfd.partitionChecked[nodeIndex + column])
@@ -390,9 +394,9 @@ public class DFDColumn {
     /**
      * calculate the partition size of 'nodeIndex'
      *
-     * @param nodeIndex
+     * @param nodeIndex    the current node
      * @param oldNodeIndex the subset of 'nodeIndex'
-     * @return
+     * @return the partition size of 'nodeIndex'
      */
     private int getPartition(int nodeIndex, int oldNodeIndex) {
         if (dfd.partitionChecked[nodeIndex]) {
@@ -406,12 +410,13 @@ public class DFDColumn {
             //calculate the partition of 'nodeIndex'
             return computePartitions(oldNodeIndex, -1, nodeIndex - oldNodeIndex);
 
-        for (Integer it : columnIndexes) {
-            //combination 'it' is the subset of 'nodeIndex' and combination('nodeIndex'\'it') is checked
-            //('nodeIndex'\'it') is the subset of 'nodeIndex' than doesn't contain 'it'
-            if (it < nodeIndex && ((it & nodeIndex) != 0) && dfd.partitionChecked[nodeIndex - it])
+        for (Integer columnIndex : columnIndexes) {
+            //combination 'columnIndex' is the subset of 'nodeIndex' and combination('nodeIndex'\'columnIndex') is checked
+            //('nodeIndex'\'columnIndex') is the subset of 'nodeIndex' than doesn't contain 'columnIndex'
+            if (columnIndex < nodeIndex && ((columnIndex & nodeIndex) != 0)
+                    && dfd.partitionChecked[nodeIndex - columnIndex])
                 //calculate the partition of 'nodeIndex'
-                return computePartitions(nodeIndex - it, -1, it);
+                return computePartitions(nodeIndex - columnIndex, -1, columnIndex);
         }
 
         int column_index = -1;
@@ -477,8 +482,8 @@ public class DFDColumn {
     /**
      * traverse to the next node
      *
-     * @param nodeIndex
-     * @return
+     * @param nodeIndex current node
+     * @return next node to traverse
      */
     private int pickNextNode(int nodeIndex) {
         if (isDependency(nodeIndex) && isCandidate(nodeIndex)) {
@@ -505,6 +510,126 @@ public class DFDColumn {
         }
         //mark end
         return -1;
+    }
+
+    /**
+     * minimize the seeds by using the principal that
+     * a superset of a Dep cannot be a minDep
+     * @param seeds potential seeds
+     * @return a set of seeds being minimized
+     */
+    private Set<Integer> minimizeSeeds(Set<Integer> seeds) {
+
+        //remove all seeds which are supersets of other seeds
+        List<Integer> seedList = new ArrayList<>(seeds);
+
+        //used for determining if this seed is the superset of any other seeds
+        //true - it is superset
+        boolean[] supersetFlags = new boolean[seedList.size()];
+        for (int i = 0; i < seedList.size(); i++) {
+            Integer iSeed = seedList.get(i);
+            if (supersetFlags[i]) {
+                continue;
+            }
+            for (int j = 0; j < seedList.size(); ++j) {
+                Integer jSeed = seedList.get(j);
+                if (supersetFlags[j] || Objects.equals(iSeed, jSeed)) {
+                    continue;
+                }
+                if ((iSeed & jSeed) == iSeed) {
+                    //iSeed is subset
+                    supersetFlags[j] = true;
+                } else if ((iSeed & jSeed) == jSeed) {
+                    //jSeed is subset
+                    supersetFlags[i] = true;
+                    break;
+                }
+            }
+        }
+
+        List<Integer> resultTmp = new ArrayList<>();
+        for (int i = 0; i < seedList.size(); i++) {
+            if (!supersetFlags[i]) {
+                resultTmp.add(seedList.get(i));
+            }
+        }
+
+        //true - it is superset of a minDep
+        boolean[] pruneFlags = new boolean[resultTmp.size()];
+        //prune all supersets of minDep
+        for (int i = 0; i < resultTmp.size(); i++) {
+            Integer seed = resultTmp.get(i);
+            for (Integer minDep : dependencies) {
+                if ((seed & minDep) == minDep) {
+                    //seed is the superset of minDep
+                    pruneFlags[i] = true;
+                    break;
+                }
+            }
+        }
+
+        Set<Integer> result = new HashSet<>();
+        for (int i = 0; i < resultTmp.size(); i++) {
+            if (!pruneFlags[i]) {
+                result.add(resultTmp.get(i));
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * the components of FD must lie in the complement of maxNonDep
+     * e.g. R = {A, B, C, D, E}, when RHS = {E}
+     * assume that {A, B} is maxNonDep, {B, D} is minDep
+     * then {A, B}` = {C, D}, {D} belongs to {B, D}
+     * based on these components to build seeds
+     *
+     * @return a set of seeds
+     */
+    private Set<Integer> generateNextSeeds() {
+        Set<Integer> seeds = new HashSet<>();
+        Set<Integer> newSeeds = new HashSet<>();
+        Set<Integer> result = new HashSet<>();
+        if (!nonDependencies.isEmpty()) {
+            //this loop is used for building all possible Dep
+            for (Integer maxNonDep : nonDependencies) {
+                int complement = ~maxNonDep;
+                if (seeds.isEmpty()) {
+                    for (Integer columnIndex : columnIndexes) {
+                        //one of the components of 'complement' belongs to 'columnIndex'
+                        if ((columnIndex & complement) != 0) {
+                            seeds.add(columnIndex);
+                        }
+                    }
+                } else {
+                    for (Integer dep : seeds) {
+                        for (Integer columnIndex : columnIndexes) {
+                            //one of the components of 'complement' belongs to 'columnIndex'
+                            if ((columnIndex & complement) != 0) {
+                                //combine 'dep' and 'columnIndex'
+                                newSeeds.add(dep | columnIndex);
+                            }
+                        }
+                    }
+                    //to minimize seeds
+                    Set<Integer> minimizedNewDep = minimizeSeeds(newSeeds);
+                    //copy minimizedNewDep to 'seeds' and initialize 'newSeeds' for next loop
+                    seeds.clear();
+                    seeds.addAll(minimizedNewDep);
+                    newSeeds.clear();
+                }
+            }
+            seeds.removeAll(dependencies);
+
+            //find out unchecked seeds
+            for (Integer seed : seeds) {
+                if (!isVisited(seed)) {
+                    result.add(seed);
+                }
+            }
+        }
+        return result;
     }
 
     /**
