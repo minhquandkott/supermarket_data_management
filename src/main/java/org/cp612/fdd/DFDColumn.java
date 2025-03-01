@@ -1,9 +1,6 @@
 package org.cp612.fdd;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -27,6 +24,9 @@ public class DFDColumn {
     private Set<Integer> non_dependencies;
 
     private Set<Integer> columnIndexes = new HashSet<>();
+
+    //used for tracing node
+    private Stack<Integer> trace = new Stack<>();
 
     public DFDColumn(DFD dfd) {
         this.dfd = dfd;
@@ -96,22 +96,47 @@ public class DFDColumn {
         nonDependency[nodeIndex] = true;
     }
 
+    private Set<Integer> findSubsets(int nodeIndex) {
+        Set<Integer> result = new HashSet<>();
+        for (Integer columnIndex : columnIndexes) {
+            if (columnIndex != nodeIndex) {
+                //columnIndexes are always single-column-index
+                //by using XOR operation can find out any subset/superset
+                int subset = columnIndex ^ nodeIndex;
+                if ((subset & nodeIndex) != subset) {
+                    //subset must be smaller than the current node
+                    //result of &-operation would still be subset
+                    result.add(subset);
+                }
+            }
+        }
+        return result;
+    }
+
+    private Set<Integer> findSuperset(int nodeIndex) {
+        Set<Integer> result = new HashSet<>();
+        for (Integer columnIndex : columnIndexes) {
+            if (columnIndex != nodeIndex) {
+                //columnIndexes are always single-column-index
+                //by using XOR operation can find out any subset/superset
+                int superset = columnIndex ^ nodeIndex;
+                if ((superset & nodeIndex) != nodeIndex) {
+                    //subset must be smaller than the current node
+                    //result of &-operation would still be nodeIndex
+                    result.add(superset);
+                }
+            }
+        }
+        return result;
+    }
+
     public boolean isMinimal(int nodeIndex) {
         //to find out whether there is any subset of the current node which is dependency
-        for (Integer columnIndex : columnIndexes) {
-            if (columnIndex == nodeIndex)
-                continue;
-            int subset = columnIndex ^ nodeIndex;
-//            if (subset > nodeIndex)
-//                //subset must be smaller than the current node
-//                continue;
-            if ((subset & nodeIndex) != subset)
-                //subset must be smaller than the current node
-                //after &-operation it would still be subset
-                continue;
-
+        Set<Integer> subsets = findSubsets(nodeIndex);
+        for (Integer subset : subsets) {
             if (isVisited(subset)) {
                 if (isDependency(subset)) {
+                    //there is a dependency subset, the current is not minDep
                     removeDepCandidate(nodeIndex);
                     return false;
                 }
@@ -124,18 +149,11 @@ public class DFDColumn {
 
     public boolean isMaximal(int nodeIndex) {
         //to find out whether there is any superset of the current node which is dependency
-        for (Integer columnIndex : columnIndexes) {
-            if (columnIndex == nodeIndex)
-                continue;
-            int superset = columnIndex ^ nodeIndex;
-//            if (superset < nodeIndex)
-//                continue;
-            if ((superset & nodeIndex) != nodeIndex)
-                //superset must be greater than the current-node
-                //after &-operation it would still be current-node
-                continue;
+        Set<Integer> supersets = findSuperset(nodeIndex);
+        for (Integer superset : supersets) {
             if (isVisited(superset)) {
                 if (isNonDependency(superset)) {
+                    //there is a non-dependency superset, the current is not maxNonDep
                     removeNonDepCandidate(nodeIndex);
                     return false;
                 }
@@ -144,6 +162,95 @@ public class DFDColumn {
             }
         }
         return true;
+    }
+
+
+    private Set<Integer> uncheckedSubsets(int nodeIndex) {
+        Set<Integer> result = new HashSet<>();
+        Set<Integer> subsets = findSubsets(nodeIndex);
+        for (Integer subset : subsets) {
+            if (!isVisited(subset)) {
+                result.add(subset);
+            }
+        }
+        return result;
+    }
+
+    /** find out the potential nodes of minDep
+     * @param nodeIndex
+     * @return
+     */
+    private List<Integer> prunedSubsets(int nodeIndex) {
+        Set<Integer> subsetSet = uncheckedSubsets(nodeIndex);
+        List<Integer> subsets = new ArrayList<>(subsetSet);
+
+        //to find out subsets of nodeIndex and supersets of dependencies
+        for (Integer minDep : dependencies) {
+            for (int i = 0; i < subsets.size(); i++) {
+                Integer subset = subsets.get(i);
+                //subset is minDep, it should be removed
+                if (Objects.equals(subset, minDep)) {
+                    subsets.remove(i);
+                    i--;
+                    continue;
+                }
+                //subset is superset of minDep
+                if ((subset & minDep) == minDep) {
+                    //the subset must be a dependency but not minimal
+                    removeDepCandidate(subset);
+                    visited[subset] = true;
+
+                    //the subset should be pruned, remove from current list
+                    subsets.remove(i);
+                    i--;
+                }
+            }
+        }
+        return subsets;
+    }
+
+    private Set<Integer> uncheckedSupersets(int nodeIndex) {
+        Set<Integer> result = new HashSet<>();
+        Set<Integer> supersets = findSuperset(nodeIndex);
+        for (Integer superset : supersets) {
+            if (!isVisited(superset)) {
+                result.add(superset);
+            }
+        }
+        return result;
+    }
+
+    /** find out the potential nodes of maxNonDep
+     * @param nodeIndex
+     * @return
+     */
+    private List<Integer> prunedSupersets(int nodeIndex) {
+        Set<Integer> supersetSet = uncheckedSupersets(nodeIndex);
+        List<Integer> supersets = new ArrayList<>(supersetSet);
+
+        //to find out supersets of nodeIndex and subsets of non-dependencies
+        for (Integer maxNonDep : non_dependencies) {
+            for (int i = 0; i < supersets.size(); i++) {
+                Integer superset = supersets.get(i);
+                //superset is maxNonDep, it should be removed
+                if (Objects.equals(superset, maxNonDep)) {
+                    supersets.remove(i);
+                    i--;
+                    continue;
+                }
+                //superset is subset of maxNonDep
+                if ((superset & maxNonDep) == superset) {
+                    //the superset must be a non-dependency but not maximal
+                    removeNonDepCandidate(superset);
+                    visited[superset] = true;
+
+                    //the superset should be pruned, remove from current list
+                    supersets.remove(i);
+                    i--;
+                }
+            }
+        }
+        return supersets;
     }
 
     public void updateDependencyType(int nodeIndex, FDCategory before) {
@@ -156,44 +263,6 @@ public class DFDColumn {
         } else {
             throw new RuntimeException("Invalid Dependency Type Update!");
         }
-    }
-
-    private Set<Integer> getPrunedSubsets(int nodeIndex) {
-        Set<Integer> result = new HashSet<>();
-        for (Integer columnIndex : columnIndexes) {
-            if (columnIndex == nodeIndex)
-                continue;
-            int subset = columnIndex ^ nodeIndex;
-//            if (subset > nodeIndex)
-//                continue;
-            if ((subset & nodeIndex) != subset)
-                //subset must be smaller than the current node
-                //after &-operation it would still be subset
-                continue;
-            if (!isVisited(subset)) {
-                result.add(subset);
-            }
-        }
-        return result;
-    }
-
-    private Set<Integer> getPrunedSupersets(int nodeIndex) {
-        Set<Integer> result = new HashSet<>();
-        for (Integer columnIndex : columnIndexes) {
-            if (columnIndex == nodeIndex)
-                continue;
-            int superset = columnIndex ^ nodeIndex;
-//            if (superset < nodeIndex)
-//                continue;
-            if ((superset & nodeIndex) != nodeIndex)
-                //superset must be greater than the current-node
-                //after &-operation it would still be current-node
-                continue;
-            if (!isVisited(superset)) {
-                result.add(superset);
-            }
-        }
-        return result;
     }
 
     /**
@@ -318,7 +387,13 @@ public class DFDColumn {
         return dfd.partitions[nodeIndex + column].size();
     }
 
-    //'oldNodeIndex' is the subset of 'nodeIndex'
+    /**
+     * calculate the partition size of 'nodeIndex'
+     *
+     * @param nodeIndex
+     * @param oldNodeIndex the subset of 'nodeIndex'
+     * @return
+     */
     private int getPartition(int nodeIndex, int oldNodeIndex) {
         if (dfd.partitionChecked[nodeIndex]) {
             //if the partition of this combination is checked then return
@@ -400,6 +475,39 @@ public class DFDColumn {
     }
 
     /**
+     * traverse to the next node
+     *
+     * @param nodeIndex
+     * @return
+     */
+    private int pickNextNode(int nodeIndex) {
+        if (isDependency(nodeIndex) && isCandidate(nodeIndex)) {
+            List<Integer> subsets = prunedSubsets(nodeIndex);
+            if (subsets.isEmpty())
+                addDependency(nodeIndex);
+            else {
+                int nextNode = subsets.getFirst();
+                trace.push(nodeIndex);
+                return nextNode;
+            }
+        } else if (isCandidate(nodeIndex) && isNonDependency(nodeIndex)) {
+            List<Integer> supersets = prunedSupersets(nodeIndex);
+            if (supersets.isEmpty())
+                addNonDependency(nodeIndex);
+            else {
+                int nextNode = supersets.getFirst();
+                trace.push(nodeIndex);
+                return nextNode;
+            }
+        }
+        if (!trace.empty()) {
+            return trace.pop();
+        }
+        //mark end
+        return -1;
+    }
+
+    /**
      * @param rhs
      * @return
      */
@@ -409,7 +517,6 @@ public class DFDColumn {
         while (!seeds.isEmpty()) {
             for (Integer nodeIndex : seeds) {
                 int oldNodeIndex = -1;
-
                 do {
                     if (isVisited(nodeIndex)) {
                         if (isCandidate(nodeIndex)) {
@@ -440,8 +547,10 @@ public class DFDColumn {
                         }
                     }
                     oldNodeIndex = nodeIndex;
+                    //before determining the category of the current node
+                    //all of its subsets(Dep)/supersets(NonDep) are required to be traversed
                     nodeIndex = pickNextNode(nodeIndex);
-                } while (nodeIndex != null && nodeIndex >= 0);
+                } while (nodeIndex >= 0);
             }
             seeds = generateNextSeeds();
         }
