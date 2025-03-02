@@ -14,12 +14,14 @@ public class PostgreSQLProcessor {
     private static final String USER = "admin";
     private static final String PASSWORD = "abcd1234";
 
-    public static Map<String, List<Map<String, String>>> queryAllTables() {
-        Map<String, List<Map<String, String>>> result = new HashMap<>();
+    /**
+     * @return all table data, map-K:TableName,V:Data
+     */
+    public static Map<String, DataSet> queryAllTables() {
+        Map<String, DataSet> result = new HashMap<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement tableStatement = connection.createStatement();
-             Statement dataStatement = connection.createStatement()) {
+             Statement tableStatement = connection.createStatement()) {
 
             //query tables
             String query = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
@@ -27,26 +29,8 @@ public class PostgreSQLProcessor {
 
             while (tableResultSet.next()) {
                 String tableName = tableResultSet.getString("table_name");
-                List<Map<String, String>> tableData = new ArrayList<>();
-
-                //query data
-                String dataQuery = "SELECT * FROM " + tableName;
-                ResultSet dataResultSet = dataStatement.executeQuery(dataQuery);
-
-                while (dataResultSet.next()) {
-                    Map<String, String> row = new HashMap<>();
-                    int columnCount = dataResultSet.getMetaData().getColumnCount();
-
-                    for (int i = 1; i <= columnCount; i++) {
-                        String columnName = dataResultSet.getMetaData().getColumnName(i);
-                        String value = dataResultSet.getString(i);
-                        row.put(columnName, value);
-                    }
-
-                    tableData.add(row);
-                }
-
-                result.put(tableName, tableData);
+                Map<String, DataSet> tableData = queryTable(tableName);
+                result.put(tableName, tableData.get(tableName));
             }
 
         } catch (Exception e) {
@@ -56,6 +40,10 @@ public class PostgreSQLProcessor {
         return result;
     }
 
+    /**
+     * @param tableName target table name
+     * @return table data, map-K:TableName,V:Data
+     */
     public static Map<String, DataSet> queryTable(String tableName) {
         Map<String, DataSet> result = new HashMap<>();
 
