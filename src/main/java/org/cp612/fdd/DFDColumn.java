@@ -633,8 +633,8 @@ public class DFDColumn {
     }
 
     /**
-     * @param rhs
-     * @return
+     * @param rhs right hand side
+     * @return possible left hand side
      */
     public Set<Integer> findLHSs(int rhs) {
         Set<Integer> seeds = new HashSet<>(columnIndexes);
