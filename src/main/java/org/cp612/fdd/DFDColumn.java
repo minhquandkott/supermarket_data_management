@@ -257,18 +257,6 @@ public class DFDColumn {
         return supersets;
     }
 
-    public void updateDependencyType(int nodeIndex, FDCategory before) {
-        if (before == FDCategory.CANDIDATE_DEPENDENCY) {
-            candidateDependency[nodeIndex] = false;
-            minimalDependency[nodeIndex] = true;
-        } else if (before == FDCategory.CANDIDATE_NON_DEPENDENCY) {
-            candidateNonDependency[nodeIndex] = false;
-            maximalNonDependency[nodeIndex] = true;
-        } else {
-            throw new RuntimeException("Invalid Dependency Type Update!");
-        }
-    }
-
     /**
      * whether this node had been categorized as dependency or non-dependency
      *

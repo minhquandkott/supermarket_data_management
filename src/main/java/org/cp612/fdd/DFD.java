@@ -143,20 +143,30 @@ public class DFD {
      */
     private Set<FunctionalDependency> buildOutput() {
         Set<FunctionalDependency> result = new HashSet<>();
+        //group by lhs
+        Map<Integer, Set<Integer>> lhsGroup = new HashMap<>();
         for (int i = 0; i < fds.length; i++) {
             Set<Integer> lhsSet = fds[i];
             for (Integer lhs : lhsSet) {
-                List<String> fdLhs = new ArrayList<>();
-                for (int j = 0; j < columnNames.size(); j++) {
-                    int columnIndex = 1 << j;
-                    if ((lhs & columnIndex) != 0) {
-                        fdLhs.add(columnNames.get(j));
-                    }
-                }
-                List<String> fdRhs = new ArrayList<>();
-                fdRhs.add(columnNames.get(i));
-                result.add(new FunctionalDependency(fdLhs, fdRhs));
+                lhsGroup.computeIfAbsent(lhs, k -> new HashSet<>());
+                lhsGroup.get(lhs).add(i);
             }
+        }
+        //build output
+        for (Integer lhs : lhsGroup.keySet()) {
+            List<String> fdLhs = new ArrayList<>();
+            for (int i = 0; i < columnNames.size(); i++) {
+                int columnIndex = 1 << i;
+                if ((lhs & columnIndex) != 0) {
+                    fdLhs.add(columnNames.get(i));
+                }
+            }
+            Set<Integer> rhsSet = lhsGroup.get(lhs);
+            List<String> fdRhs = new ArrayList<>();
+            for (Integer rhs : rhsSet) {
+                fdRhs.add(columnNames.get(rhs));
+            }
+            result.add(new FunctionalDependency(fdLhs, fdRhs));
         }
         return result;
     }
