@@ -17,6 +17,7 @@ public class FddApplication {
         Map<String, DataSet> data = PostgreSQLProcessor.queryAllTables();
         long endTime = System.currentTimeMillis();
         System.out.println("data query time: " + (endTime - startTime));
+        System.out.println();
 
 //        // Print the result
 //        for (String tableName : data.keySet()) {
@@ -27,17 +28,18 @@ public class FddApplication {
 //            }
 //        }
 
-        long startTime2 = System.currentTimeMillis();
+
         for (String tableName : data.keySet()) {
+            long startTimeDFD = System.currentTimeMillis();
             DataSet ds = data.get(tableName);
             System.out.println("Table: " + tableName);
             Set<FunctionalDependency> result =
                     DFD.discoverFunctionalDependencies(ds);
             result.forEach(System.out::println);
+            long endTimeDFD = System.currentTimeMillis();
+            System.out.println("DFD time: " + (endTimeDFD - startTimeDFD));
             System.out.println();
         }
-        long endTime2 = System.currentTimeMillis();
-        System.out.println("DFD time: " + (endTime2 - startTime2));
 
 //        final String TEST_TABLE = "inventory_request_product_detail";
 //        final String TEST_TABLE = "inventory_request";
