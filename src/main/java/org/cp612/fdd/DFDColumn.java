@@ -23,7 +23,7 @@ public class DFDColumn {
     private final Set<Integer> dependencies;
     private final Set<Integer> nonDependencies;
 
-    private final Set<Integer> columnIndexes = new HashSet<>();
+    private final List<Integer> columnIndexes = new ArrayList<>();
 
     //used for tracing node
     private final Stack<Integer> trace = new Stack<>();
@@ -43,10 +43,6 @@ public class DFDColumn {
 
     public void pushColumn(int column) {
         columnIndexes.add(column);
-    }
-
-    public Set<Integer> getColumnIndexes() {
-        return columnIndexes;
     }
 
     public boolean isVisited(int nodeIndex) {
@@ -103,7 +99,7 @@ public class DFDColumn {
                 //columnIndexes are always single-column-index
                 //by using XOR operation can find out any subset/superset
                 int subset = columnIndex ^ nodeIndex;
-                if ((subset & nodeIndex) != subset) {
+                if ((subset & nodeIndex) == subset) {
                     //subset must be smaller than the current node
                     //result of &-operation would still be subset
                     result.add(subset);
@@ -120,7 +116,7 @@ public class DFDColumn {
                 //columnIndexes are always single-column-index
                 //by using XOR operation can find out any subset/superset
                 int superset = columnIndex ^ nodeIndex;
-                if ((superset & nodeIndex) != nodeIndex) {
+                if ((superset & nodeIndex) == nodeIndex) {
                     //subset must be smaller than the current node
                     //result of &-operation would still be nodeIndex
                     result.add(superset);
