@@ -1,0 +1,226 @@
+"C:\Program Files\Java\jdk-21\bin\java.exe" -javaagent:D:\Jetbrains\idea\lib\idea_rt.jar=51874:D:\Jetbrains\idea\bin -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath D:\Jetbrains\workspace\supermarket_data_management\target\classes;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.4.2\spring-boot-starter-data-jpa-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot-starter\3.4.2\spring-boot-starter-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot\3.4.2\spring-boot-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.4.2\spring-boot-autoconfigure-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.4.2\spring-boot-starter-logging-3.4.2.jar;C:\Users\haowe\.m2\repository\ch\qos\logback\logback-classic\1.5.16\logback-classic-1.5.16.jar;C:\Users\haowe\.m2\repository\ch\qos\logback\logback-core\1.5.16\logback-core-1.5.16.jar;C:\Users\haowe\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.24.3\log4j-to-slf4j-2.24.3.jar;C:\Users\haowe\.m2\repository\org\apache\logging\log4j\log4j-api\2.24.3\log4j-api-2.24.3.jar;C:\Users\haowe\.m2\repository\org\slf4j\jul-to-slf4j\2.0.16\jul-to-slf4j-2.0.16.jar;C:\Users\haowe\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\haowe\.m2\repository\org\yaml\snakeyaml\2.3\snakeyaml-2.3.jar;C:\Users\haowe\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.4.2\spring-boot-starter-jdbc-3.4.2.jar;C:\Users\haowe\.m2\repository\com\zaxxer\HikariCP\5.1.0\HikariCP-5.1.0.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-jdbc\6.2.2\spring-jdbc-6.2.2.jar;C:\Users\haowe\.m2\repository\org\hibernate\orm\hibernate-core\6.6.5.Final\hibernate-core-6.6.5.Final.jar;C:\Users\haowe\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\haowe\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\haowe\.m2\repository\org\jboss\logging\jboss-logging\3.6.1.Final\jboss-logging-3.6.1.Final.jar;C:\Users\haowe\.m2\repository\org\hibernate\common\hibernate-commons-annotations\7.0.3.Final\hibernate-commons-annotations-7.0.3.Final.jar;C:\Users\haowe\.m2\repository\io\smallrye\jandex\3.2.0\jandex-3.2.0.jar;C:\Users\haowe\.m2\repository\com\fasterxml\classmate\1.7.0\classmate-1.7.0.jar;C:\Users\haowe\.m2\repository\net\bytebuddy\byte-buddy\1.15.11\byte-buddy-1.15.11.jar;C:\Users\haowe\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.5\jaxb-runtime-4.0.5.jar;C:\Users\haowe\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.5\jaxb-core-4.0.5.jar;C:\Users\haowe\.m2\repository\org\eclipse\angus\angus-activation\2.0.2\angus-activation-2.0.2.jar;C:\Users\haowe\.m2\repository\org\glassfish\jaxb\txw2\4.0.5\txw2-4.0.5.jar;C:\Users\haowe\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\haowe\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\haowe\.m2\repository\org\antlr\antlr4-runtime\4.13.0\antlr4-runtime-4.13.0.jar;C:\Users\haowe\.m2\repository\org\springframework\data\spring-data-jpa\3.4.2\spring-data-jpa-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\data\spring-data-commons\3.4.2\spring-data-commons-3.4.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-orm\6.2.2\spring-orm-6.2.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-context\6.2.2\spring-context-6.2.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-expression\6.2.2\spring-expression-6.2.2.jar;C:\Users\haowe\.m2\repository\io\micrometer\micrometer-observation\1.14.3\micrometer-observation-1.14.3.jar;C:\Users\haowe\.m2\repository\io\micrometer\micrometer-commons\1.14.3\micrometer-commons-1.14.3.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-aop\6.2.2\spring-aop-6.2.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-tx\6.2.2\spring-tx-6.2.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-beans\6.2.2\spring-beans-6.2.2.jar;C:\Users\haowe\.m2\repository\org\slf4j\slf4j-api\2.0.16\slf4j-api-2.0.16.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-aspects\6.2.2\spring-aspects-6.2.2.jar;C:\Users\haowe\.m2\repository\org\aspectj\aspectjweaver\1.9.22.1\aspectjweaver-1.9.22.1.jar;C:\Users\haowe\.m2\repository\com\google\guava\guava\33.3.1-jre\guava-33.3.1-jre.jar;C:\Users\haowe\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\haowe\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\haowe\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\haowe\.m2\repository\org\checkerframework\checker-qual\3.43.0\checker-qual-3.43.0.jar;C:\Users\haowe\.m2\repository\com\google\errorprone\error_prone_annotations\2.28.0\error_prone_annotations-2.28.0.jar;C:\Users\haowe\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\haowe\.m2\repository\org\postgresql\postgresql\42.7.5\postgresql-42.7.5.jar;C:\Users\haowe\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\haowe\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.3\jakarta.activation-api-2.1.3.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-core\6.2.2\spring-core-6.2.2.jar;C:\Users\haowe\.m2\repository\org\springframework\spring-jcl\6.2.2\spring-jcl-6.2.2.jar org.cp612.fdd.FddApplication
+data query time: 16055
+
+Table: delivery
+courier -> delivery_id, po_id, tracking_number, sender, receiver, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+sender -> delivery_id, po_id, tracking_number, receiver, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+delivery_id -> po_id, tracking_number, sender, receiver, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+d_address -> delivery_id, po_id, tracking_number, sender, receiver, courier, d_est_date, d_act_date, deliver_type, deliver_status
+po_id -> delivery_id, tracking_number, sender, receiver, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+receiver -> delivery_id, po_id, tracking_number, sender, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+tracking_number -> delivery_id, po_id, sender, receiver, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status
+DFD time: 49
+
+Table: inventory_shipment
+Empty input dataset!
+DFD time: 0
+
+Table: supply_shipment
+Empty input dataset!
+DFD time: 0
+
+Table: product_detail
+batch_no -> product_id, ptype_id, current_price, bbf_date
+current_price -> product_id, ptype_id, batch_no, bbf_date
+product_id -> ptype_id, batch_no, current_price, bbf_date
+DFD time: 2
+
+Table: supplier_product_type
+ptype_id, quantity -> supplier_id, unit
+supplier_id, ptype_id -> quantity, unit
+supplier_id, quantity -> ptype_id, unit
+DFD time: 0
+
+Table: supplier_order_product_type
+batch_no -> ptype_id, so_id, quantity, unit
+ptype_id, so_id -> quantity, unit, batch_no
+quantity -> ptype_id, so_id, unit, batch_no
+DFD time: 0
+
+Table: outlet_product_detail
+product_id, outlet_id -> quantity, unit
+product_id, quantity -> outlet_id, unit
+DFD time: 2
+
+Table: office
+capacity -> department_id
+department_id -> capacity
+DFD time: 0
+
+Table: employee
+em_address -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_postcode, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+first_name, em_gender, skill -> em_status
+department_id, first_name -> em_gender, year_hired
+em_position, em_status -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, skill, hourly_wage, location_type
+hourly_wage -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, skill, currency_id, location_type, em_status
+department_id, first_name, skill -> employee_id, em_status, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, hourly_wage, location_type
+department_id, em_position -> employee_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, skill, hourly_wage, location_type, em_status
+department_id, last_name, skill -> employee_id, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, hourly_wage, location_type, em_status
+last_name, skill, location_type -> em_status
+department_id, year_hired, skill, location_type -> employee_id, em_status, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, hourly_wage
+department_id, first_name, location_type -> employee_id, em_status, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage
+department_id, last_name, year_hired -> employee_id, em_status, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage
+first_name, year_hired, em_status -> employee_id, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage, location_type
+em_phone -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_email, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+department_id, em_gender, year_hired, skill -> employee_id, em_status, first_name, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, hourly_wage, location_type
+em_position -> currency_id
+last_name -> currency_id
+first_name, year_hired, location_type -> employee_id, em_status, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage
+last_name, year_hired, skill -> employee_id, em_status, department_id, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, hourly_wage
+em_gender -> currency_id
+skill -> currency_id
+first_name -> currency_id
+em_gender, em_position -> employee_id, department_id, first_name, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, skill, hourly_wage, location_type, em_status
+last_name, em_gender, year_hired -> employee_id, em_status, department_id, first_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage
+em_postcode -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+department_id, em_gender, year_hired, em_status -> employee_id, first_name, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage, location_type
+em_birthday -> employee_id, department_id, first_name, last_name, em_gender, em_phone, em_email, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+last_name, skill, em_status -> location_type
+first_name, year_hired, skill -> employee_id, em_status, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, hourly_wage, location_type
+first_name, last_name -> employee_id, department_id, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, location_type, em_status
+department_id, last_name, em_gender -> em_status
+department_id, first_name, em_status -> employee_id, last_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage, location_type
+last_name, em_gender, year_hired, currency_id, location_type -> first_name
+first_name, em_position, skill -> employee_id, department_id, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, hourly_wage, location_type, em_status
+last_name, em_gender, skill, currency_id, location_type -> first_name
+first_name, year_hired -> department_id, em_gender
+employee_id -> department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+department_id, last_name, location_type -> employee_id, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, em_status
+year_hired -> currency_id
+department_id -> currency_id
+last_name, em_gender, location_type -> em_status
+last_name, em_gender, skill -> employee_id, department_id, first_name, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, hourly_wage, location_type, em_status
+last_name, year_hired, skill, currency_id, location_type -> first_name
+last_name, em_position -> employee_id, department_id, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, skill, hourly_wage, location_type, em_status
+last_name, year_hired, em_status -> employee_id, department_id, first_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, skill, hourly_wage
+em_position, year_hired -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, skill, hourly_wage, location_type, em_status
+em_position, location_type -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, year_hired, skill, hourly_wage, em_status
+em_status -> currency_id
+last_name, year_hired -> location_type
+location_type -> currency_id
+em_email -> employee_id, department_id, first_name, last_name, em_gender, em_birthday, em_phone, em_address, em_postcode, em_position, year_hired, skill, hourly_wage, currency_id, location_type, em_status
+first_name, skill, location_type -> employee_id, department_id, last_name, em_gender, em_birthday, em_phone, em_email, em_address, em_postcode, em_position, year_hired, hourly_wage, em_status
+DFD time: 69590
+
+Table: warehouse
+department_id -> regions
+regions -> department_id
+DFD time: 0
+
+Table: inventory_request_product_detail
+request_id, quantity, unit -> product_id
+product_id, quantity, unit -> request_id
+product_id, request_id -> quantity, unit
+DFD time: 0
+
+Table: inventory_request
+outlet_id, warehouse_id, ir_date, approved_by -> request_id
+request_id -> outlet_id, warehouse_id, ir_date, ir_status, approved_by
+outlet_id, warehouse_id, ir_date, ir_status -> request_id, approved_by
+outlet_id, ir_date, approved_by -> ir_status
+DFD time: 0
+
+Table: product_type
+category -> currency_id
+name, category -> ptype_id, description, unit, unit_price
+unit_price -> ptype_id, name, description, unit, currency_id, category
+description -> ptype_id, name, unit, unit_price, currency_id, category
+name -> currency_id
+ptype_id -> name, description, unit, unit_price, currency_id, category
+unit -> currency_id
+DFD time: 0
+
+Table: complaint
+complaint_id -> customer_id, po_id, issue_desc, res_desc, res_status, res_date, complain_handler
+customer_id, po_id, res_status, complain_handler -> complaint_id, issue_desc, res_desc, res_date
+res_desc, res_date, complain_handler -> res_status
+customer_id, res_date, complain_handler -> complaint_id, po_id, issue_desc, res_desc, res_status
+po_id, res_date, complain_handler -> complaint_id, customer_id, issue_desc, res_desc, res_status
+po_id, res_desc, complain_handler -> complaint_id, customer_id, issue_desc, res_status, res_date
+issue_desc -> complaint_id, customer_id, po_id, res_desc, res_status, res_date, complain_handler
+customer_id, res_desc, res_status, complain_handler -> complaint_id, po_id, issue_desc, res_date
+customer_id, po_id -> complaint_id, issue_desc, res_desc, res_status, res_date, complain_handler
+DFD time: 5
+
+Table: supplier
+su_address -> supplier_id, su_name, su_phone, su_email, su_postcode
+su_email -> supplier_id, su_name, su_phone, su_address, su_postcode
+supplier_id -> su_name, su_phone, su_email, su_address, su_postcode
+su_phone -> supplier_id, su_name, su_email, su_address, su_postcode
+su_postcode -> supplier_id, su_name, su_phone, su_email, su_address
+su_name -> supplier_id, su_phone, su_email, su_address, su_postcode
+DFD time: 0
+
+Table: warehouse_product_detail
+product_id, warehouse_id -> quantity, unit
+product_id, quantity -> warehouse_id, unit
+DFD time: 0
+
+Table: supplier_order
+so_pay_method, so_handler -> warehouse_id
+so_id -> supplier_id, warehouse_id, so_price, currency_id, so_date, so_pay_method, so_pay_status, delivery_status, so_handler
+supplier_id -> currency_id
+so_price -> so_id, supplier_id, warehouse_id, currency_id, so_date, so_pay_method, so_pay_status, delivery_status, so_handler
+so_date -> so_id, supplier_id, warehouse_id, so_price, currency_id, so_pay_method, so_pay_status, delivery_status, so_handler
+warehouse_id, so_pay_status, so_handler -> so_pay_method, delivery_status
+warehouse_id -> currency_id
+supplier_id, warehouse_id, so_pay_method, so_pay_status, delivery_status -> so_id, so_price, so_date, so_handler
+so_handler -> currency_id
+so_pay_method, so_pay_status, so_handler -> delivery_status
+so_pay_method, delivery_status, so_handler -> so_pay_status
+so_pay_status -> currency_id
+delivery_status -> currency_id
+so_pay_status, delivery_status, so_handler -> warehouse_id, so_pay_method
+supplier_id, so_handler -> so_id, warehouse_id, so_price, so_date, so_pay_method, so_pay_status, delivery_status
+so_pay_method -> currency_id
+DFD time: 0
+
+Table: product_order_product_detail
+po_id, product_id -> quantity, unit
+DFD time: 11
+
+Table: currency
+currency_unit -> currency_id
+currency_id -> currency_unit
+DFD time: 0
+
+Table: product_order
+payment_method -> currency_id
+customer_id, po_date -> po_id, outlet_id, po_price, payment_method, payment_status
+customer_id, outlet_id, payment_method -> payment_status
+po_price -> po_id, customer_id, outlet_id, currency_id, po_date, payment_method, payment_status
+po_date -> currency_id
+outlet_id -> currency_id
+outlet_id, po_date -> po_id, customer_id, po_price, payment_method, payment_status
+po_date, payment_method -> po_id, customer_id, outlet_id, po_price, payment_status
+payment_status -> currency_id
+po_date, payment_status -> po_id, customer_id, outlet_id, po_price, payment_method
+customer_id -> currency_id
+po_id -> customer_id, outlet_id, po_price, currency_id, po_date, payment_method, payment_status
+DFD time: 0
+
+Table: outlet
+department_id -> open_time
+DFD time: 0
+
+Table: department
+department_id -> manager, de_name, de_type, de_location, de_postal, de_status
+manager, de_status -> department_id, de_name, de_type, de_location, de_postal
+de_name -> department_id, manager, de_type, de_location, de_postal, de_status
+manager, de_type -> department_id, de_name, de_location, de_postal, de_status
+de_postal -> department_id, manager, de_name, de_type, de_location, de_status
+de_location -> department_id, manager, de_name, de_type, de_postal, de_status
+DFD time: 0
+
+Table: customer
+postcode -> customer_id, first_name, last_name, gender, birthday, phone, email, address
+phone -> customer_id, first_name, last_name, gender, birthday, email, address, postcode
+address -> customer_id, first_name, last_name, gender, birthday, phone, email, postcode
+email -> customer_id, first_name, last_name, gender, birthday, phone, address, postcode
+first_name, last_name -> gender
+customer_id -> first_name, last_name, gender, birthday, phone, email, address, postcode
+birthday -> customer_id, first_name, last_name, gender, phone, email, address, postcode
+DFD time: 0
+
+
+Process finished with exit code 0
