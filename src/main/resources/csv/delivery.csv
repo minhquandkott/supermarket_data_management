@@ -1,4 +1,3 @@
-delivery_id,po_id,tracking_number,sender,receiver,courier,d_address,d_est_date,d_act_date,deliver_type,deliver_status
 1,1,TRK-834484348,Scott Ramsey,Elizabeth Garcia,Hampton-Jones,"7041 Black Mews
 North Tabitha, ON L7T1A5",2025-03-12,2025-03-15,1,0
 2,2,TRK-433166731,Justin Potts,Michelle Mendez,"Rivas, Pace and Franklin","4568 Deborah Bypass Suite 714

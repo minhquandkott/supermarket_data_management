@@ -1,4 +1,3 @@
-employee_id,department_id,first_name,last_name,em_gender,em_birthday,em_phone,em_email,em_address,em_postcode,em_position,year_hired,skill,hourly_wage,currency_id,location_type,em_status
 1,10,Michael,Higgins,Male,1991-03-19,+1 (929) 677-0032,murphywilliam@yahoo.com,"1660 Preston Mission Suite 678
 Lindahaven, ON J7K 8A3",L2M 8L5,Automotive engineer,2021,Technical Support,29.4,1,0,0
 2,2,Laura,Shepard,Other,1968-07-30,783 640 3013,christinedaniels@graves.com,"3559 Jennifer Forge Suite 713
