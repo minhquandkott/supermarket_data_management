@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PostgreSQLProcessor {
-    private static final String URL = "jdbc:postgresql://43.153.31.150:5432/supermarketsys";
+    private static final String URL = "jdbc:postgresql://43.153.31.150:5432/postgres";
     private static final String USER = "admin";
     private static final String PASSWORD = "abcd1234";
 
