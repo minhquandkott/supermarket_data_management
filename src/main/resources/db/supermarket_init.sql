@@ -121,7 +121,7 @@ CREATE TABLE product_order (
     CONSTRAINT fk_product_order_customer FOREIGN KEY (customer_id)
         REFERENCES customer(customer_id) ON DELETE CASCADE,
     CONSTRAINT fk_product_order_outlet FOREIGN KEY (outlet_id)
-        REFERENCES department(department_id) ON DELETE CASCADE,
+        REFERENCES outlet(department_id) ON DELETE CASCADE,
     CONSTRAINT fk_employee_currency FOREIGN KEY (currency_id)
         REFERENCES currency(currency_id) ON DELETE CASCADE
 );
