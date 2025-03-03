@@ -1084,6 +1084,7 @@ INSERT INTO product_order (po_id, customer_id, outlet_id, po_price, currency_id,
 (98, 30, 16, 454.48, 1, '2022-06-02', 0, 2),
 (99, 12, 20, 121.3, 1, '2022-09-27', 2, 2),
 (100, 27, 1, 314.74, 1, '2021-08-12', 3, 2);
+
 INSERT INTO delivery (delivery_id, po_id, tracking_number, sender, receiver, courier, d_address, d_est_date, d_act_date, deliver_type, deliver_status) VALUES
 (1, 1, 'TRK-834484348', 'Scott Ramsey', 'Elizabeth Garcia', 'Hampton-Jones', '7041 Black Mews
 North Tabitha, ON L7T1A5', '2025-03-12', '2025-03-15', 1, 0),
@@ -1285,7 +1286,6 @@ Port Rachelmouth, YT Y1E2K1', '2025-03-03', '2025-02-24', 0, 2),
 Port Charles, NU M3X 7E7', '2025-02-25', '2025-02-19', 1, 0),
 (100, 100, 'TRK-544913516', 'Sonya Rosario', 'Zoe Wood', 'Harrell-Martinez', '4630 Johnson Courts
 Hollyborough, NB M4V1Y5', '2025-03-09', '2025-03-16', 1, 0);
-
 
 INSERT INTO complaint (complaint_id, customer_id, po_id, issue_desc, res_desc, res_status, res_date, complain_handler) VALUES
 (1, 62, 11, 'In ut adipisci nesciunt incidunt rem aliquam quia atque blanditiis.', NULL, 0, '2025-02-09', 78),
@@ -2023,4 +2023,3 @@ VALUES
 (18, 'FedEx', 'Warehouse 18, Trois-Rivières, QC', 'Outlet 1, Moncton, NB', '2025-01-16', '2025-01-18', 0),
 (19, 'Purolator', 'Warehouse 18, Guelph, ON', 'Outlet 5, Fredericton, NB', '2025-01-06', '2025-01-07', 0),
 (20, 'UPS', 'Warehouse 7, Lethbridge, AB', 'Outlet 14, Saint John, NB', '2025-01-14', '2025-01-16', 2);
-
