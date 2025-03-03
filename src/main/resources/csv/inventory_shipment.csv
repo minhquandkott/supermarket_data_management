@@ -1,4 +1,3 @@
-ishipment_id,request_id,is_courier,from_address,to_address,is_est_date,is_act_date,is_status
 1,1,Canada Post,"Warehouse 8, Toronto, ON","Outlet 16, Vancouver, BC",2025-02-17,2025-02-18,1
 2,2,FedEx,"Warehouse 13, Calgary, AB","Outlet 19, Montreal, QC",2025-01-21,2025-01-23,0
 3,3,Purolator,"Warehouse 13, Edmonton, AB","Outlet 19, Ottawa, ON",2025-01-16,2025-01-18,1
