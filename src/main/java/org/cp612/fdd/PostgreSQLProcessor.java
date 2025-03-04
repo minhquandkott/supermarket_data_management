@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 public class PostgreSQLProcessor {
-    private static final String URL = "jdbc:postgresql://43.153.31.150:5432/postgres";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "abcd1234";
+    private static final String URL = "jdbc:postgresql://ip:port/database";//TODO database URL
+    private static final String USER = "username";//TODO database user
+    private static final String PASSWORD = "password";//TODO database password
 
     /**
      * @return all table data, map-K:TableName,V:Data
